@@ -2,7 +2,7 @@ package com.twylio.user_activity_tracker.controller;
 
 import com.twylio.user_activity_tracker.dto.UserEventRequest;
 import com.twylio.user_activity_tracker.model.UserEvent;
-import com.twylio.user_activity_tracker.repository.UserEventRepository;
+import com.twylio.user_activity_tracker.service.UserEventService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -14,22 +14,16 @@ import java.util.List;
 @RequestMapping("/events")
 public class UserEventController {
 
-    private final UserEventRepository userEventRepository;
+    private final UserEventService userEventService;
 
-    public UserEventController(UserEventRepository userEventRepository) {
-        this.userEventRepository = userEventRepository;
+    public UserEventController(UserEventService userEventService) {
+        this.userEventService = userEventService;
     }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public void logEvent(@RequestBody @Valid UserEventRequest request) {
-        UserEvent event = new UserEvent();
-        event.setUserId(request.getUserId());
-        event.setEventType(request.getEventType());
-        event.setTimestamp(request.getTimestamp());
-        event.setMetadata(request.getMetadata());
-
-        userEventRepository.save(event);
+        userEventService.logEvent(request);
     }
 
     @GetMapping
@@ -39,14 +33,6 @@ public class UserEventController {
             @RequestParam(required = false) Instant startTime,
             @RequestParam(required = false) Instant endTime
     ) {
-        if (userId != null && eventType != null) {
-            return userEventRepository.findByUserIdAndEventType(userId, eventType);
-        } else if (userId != null) {
-            return userEventRepository.findByUserId(userId);
-        } else if (startTime != null && endTime != null) {
-            return userEventRepository.findByTimestampBetween(startTime, endTime);
-        } else {
-            return userEventRepository.findAll();
-        }
+        return userEventService.getEvents(userId, eventType, startTime, endTime);
     }
 }

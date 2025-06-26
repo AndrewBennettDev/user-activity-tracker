@@ -1,13 +1,14 @@
 package com.twylio.user_activity_tracker.model;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import java.time.Instant;
 import java.util.Map;
 
 @Entity
+@AllArgsConstructor
+@NoArgsConstructor
 public class UserEvent {
 
     @Id
@@ -21,6 +22,7 @@ public class UserEvent {
     @Getter
     @Setter
     private String eventType;
+    // TODO: create eventType enum
     @Getter
     @Setter
     private Instant timestamp;
