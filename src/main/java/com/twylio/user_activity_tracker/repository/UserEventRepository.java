@@ -14,7 +14,7 @@ public interface UserEventRepository  extends JpaRepository<UserEvent, Long> {
     List<UserEvent> findByUserIdAndEventType(String userId, String eventType);
 
     @Query("SELECT e FROM UserEvent e WHERE e.timestamp BETWEEN :start AND :end")
-    List<UserEvent> findByTimestampBetween(@Param("start")Instant start, @Param("end") Instant end);
+    List<UserEvent> findByTimestampBetween(@Param("start") Instant start, @Param("end") Instant end);
 
 
 }
