@@ -1,4 +1,4 @@
-package com.twylio.user_activity_tracker.models;
+package com.twylio.user_activity_tracker.model;
 
 import jakarta.persistence.*;
 import lombok.Getter;

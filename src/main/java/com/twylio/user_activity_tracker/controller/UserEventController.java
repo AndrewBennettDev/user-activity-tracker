@@ -1,7 +1,7 @@
 package com.twylio.user_activity_tracker.controller;
 
 import com.twylio.user_activity_tracker.dto.UserEventRequest;
-import com.twylio.user_activity_tracker.models.UserEvent;
+import com.twylio.user_activity_tracker.model.UserEvent;
 import com.twylio.user_activity_tracker.repository.UserEventRepository;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;

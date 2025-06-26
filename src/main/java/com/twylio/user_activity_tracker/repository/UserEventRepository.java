@@ -1,6 +1,6 @@
 package com.twylio.user_activity_tracker.repository;
 
-import com.twylio.user_activity_tracker.models.UserEvent;
+import com.twylio.user_activity_tracker.model.UserEvent;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
